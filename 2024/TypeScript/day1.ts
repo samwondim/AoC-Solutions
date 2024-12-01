@@ -19,31 +19,31 @@ const parseInput = (content: string) => {
 const partOne = (fileName: string) => {
   const contents: string = fs.readFileSync(fileName, 'utf8').trim();
   const parsed = parseInput(contents);
-  let loc1: Array<number> = parsed[0];
-  let loc2: Array<number> = parsed[1];
+  let left: Array<number> = parsed[0];
+  let right: Array<number> = parsed[1];
 
   let acc: number = 0;
-  for (let i = 0; i < loc1.length; i++) {
-    acc += Math.abs(loc1[i] - loc2[i]);
+  for (let i = 0; i < left.length; i++) {
+    acc += Math.abs(left[i] - right[i]);
   }
+
   console.log(acc);
 }
 
 const partTwo = (fileName: string) => {
-
   const contents: string = fs.readFileSync(fileName, 'utf8').trim();
   const parsed = parseInput(contents);
-  let loc1: Array<number> = parsed[0];
-  let loc2: Array<number> = parsed[1];
+  let left: Array<number> = parsed[0];
+  let right: Array<number> = parsed[1];
 
   let book = new Map<number, number>();
 
-  for (const a of loc2) {
+  for (const a of right) {
     book.set(a, (book.get(a) || 0) + 1);
   }
 
   let acc: number = 0;
-  for (const a of loc1) {
+  for (const a of left) {
     if (book.has(a)) {
       acc += a * book.get(a)!;
     }
